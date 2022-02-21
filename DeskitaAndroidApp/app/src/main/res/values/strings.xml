@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="serverUrl">https://api-deskita.herokuapp.com</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_topseller">Top Deskita</string>
+    <string name="title_personal">Cá nhân</string>
+    <string name="search_product">Tìm sản phẩm</string>
+</resources>
