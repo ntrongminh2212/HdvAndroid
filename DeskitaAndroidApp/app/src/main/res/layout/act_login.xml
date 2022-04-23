@@ -23,7 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintVertical_bias="0.6"/>
+        app:layout_constraintVertical_bias="0.6"
+        android:onClick="login"/>
 
     <EditText
         android:id="@+id/txtEmail"
@@ -86,5 +87,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/textView3"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bttDangNhap" />
+        app:layout_constraintTop_toBottomOf="@+id/bttDangNhap"
+        android:onClick="actRegistry"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

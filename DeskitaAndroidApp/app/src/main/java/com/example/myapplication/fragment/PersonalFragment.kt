@@ -1,6 +1,7 @@
 package com.example.myapplication.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.myapplication.MyOrdersActivity
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.frag_personal.*
-import android.icu.text.CaseMap.Title
-import android.widget.Adapter
 
 class ViewHolder(row:View){
     var imgIcon: ImageView
@@ -71,12 +71,16 @@ class PersonalFragment : Fragment() {
         var listPersonalOption : List<String> = listOf(
             "Thông tin cá nhân"
             ,"Cửa hàng của bạn"
-            ,"Lịch sử đơn hàng")
+            ,"Đơn đặt hàng của bạn"
+            ,"Lịch sử mua hàng"
+            ,"Đăng xuất")
 
         var icons: IntArray = intArrayOf(
             R.drawable.ic_person_info_24
             ,R.drawable.ic_my_store_24
-            ,R.drawable.ic_order_info_24)
+            ,R.drawable.ic_shipping_24
+            ,R.drawable.ic_order_history_24
+            ,R.drawable.ic_logout)
 
         lstPersonalOption.adapter = PersonalOpAdapter(requireContext(),listPersonalOption,icons)
         lstPersonalOption.setOnItemClickListener { adapterView, view, position, id ->
@@ -86,8 +90,9 @@ class PersonalFragment : Fragment() {
             if (listPersonalOption.get(position).compareTo("Cửa hàng của bạn",true)==0){
 
             }
-            if (listPersonalOption.get(position).compareTo("Lịch sử đơn hàng",true)==0){
-
+            if (listPersonalOption.get(position).compareTo("Đơn đặt hàng của bạn",true)==0){
+                val intent = Intent(requireContext(),MyOrdersActivity::class.java)
+                startActivity(intent)
             }
         }
 

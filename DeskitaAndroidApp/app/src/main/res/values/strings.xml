@@ -1,9 +1,25 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="serverUrl">https://api-deskita.herokuapp.com</string>
+    <string name="mediaTypeJSON">application/json; charset=utf-8</string>
+    <string name="serverUrl">https://deskita-ecommerce.herokuapp.com/api/v1</string>
+    <string name="postLogin">https://deskita-ecommerce.herokuapp.com/api/v1/user/login</string>
+    <string name="getMyCart">https://deskita-ecommerce.herokuapp.com/api/v1/my-cart</string>
+    <string name="getProductDetail">https://deskita-ecommerce.herokuapp.com/api/v1/product/</string>
+    <string name="getSearchProducts">https://deskita-ecommerce.herokuapp.com/api/v1/products-home</string>
+    <string name="putAddToCart">https://deskita-ecommerce.herokuapp.com/api/v1/add-to-cart</string>
+    <string name="postCreateOrder">https://deskita-ecommerce.herokuapp.com/api/v1/order/create</string>
+    <string name="getMyOrders">https://deskita-ecommerce.herokuapp.com/api/v1/orders/me</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_topseller">Top Deskita</string>
     <string name="title_personal">Cá nhân</string>
     <string name="search_product">Tìm sản phẩm</string>
+    <string name="save_search_str">save_search_str</string>
+
+    <string name="token">token</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="_id">_id</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

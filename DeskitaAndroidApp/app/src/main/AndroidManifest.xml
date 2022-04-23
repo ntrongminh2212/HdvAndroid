@@ -12,6 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".MyOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchProductsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".PersonalInfoActivity"
             android:exported="false" />
         <activity
@@ -26,7 +42,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false"

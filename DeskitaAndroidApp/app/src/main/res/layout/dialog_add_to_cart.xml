@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_dialog">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_shopping_basket_24" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/layoutRating"
+        android:layout_margin="5dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/imgAddProduct"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtAddProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ten san pham"
+                android:textSize="18dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/layoutRating"
+                android:layout_margin="5dp"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/txtAddProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtProductName"
+                android:text="10.000đ"
+                android:textColor="@color/price"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/layoutRating"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Số lượng:"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"/>
+
+        <ImageButton
+            android:id="@+id/bttDecreaseQuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:src="@drawable/ic_remove_24"/>
+
+        <EditText
+            android:id="@+id/txtQuantities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:inputType="numberDecimal"
+            android:text="0"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/bttIncreaseQuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_24"
+            android:backgroundTint="#4CAF50"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/layoutRating"
+        android:background="?android:attr/listDivider" />
+
+    <Button
+        android:id="@+id/bttConfirmCart"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:text="XÁC NHẬN"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_confirm_24"
+        android:paddingLeft="130dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/price"
+        android:layout_marginTop="5dp"/>
+</LinearLayout>

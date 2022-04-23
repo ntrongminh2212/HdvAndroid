@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.login.*
-import kotlinx.android.synthetic.main.register.*
+import kotlinx.android.synthetic.main.act_register.*
+import kotlinx.android.synthetic.main.act_login.*
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -18,7 +19,7 @@ class RegisterActivity() : AppCompatActivity(){
     var password: String = ""
     var confPassword: String = ""
     val emailRegex:Regex = Regex("\\w+@gmail\\.com")
-    var registryUrl: String? = ""
+    var registryUrl: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,21 +67,21 @@ class RegisterActivity() : AppCompatActivity(){
         return check
     }
 
-    private fun registry(){
+    private fun registry() {
         val newAccountJson = JSONObject()
-        newAccountJson.put("userName",username)
-        newAccountJson.put("password",password)
-        newAccountJson.put("firstName",firstname)
-        newAccountJson.put("lastname",lastName)
+        newAccountJson.put("userName", username)
+        newAccountJson.put("password", password)
+        newAccountJson.put("firstName", firstname)
+        newAccountJson.put("lastname", lastName)
 
         val client = OkHttpClient()
-        val JSONType = MediaType.parse("application/json; charset=utf-8")
+        val JSONType = "application/json; charset=utf-8".toMediaTypeOrNull()
         val reqBody = RequestBody.create(JSONType, newAccountJson.toString())
-        val req : Request = Request.Builder().post(reqBody).url(registryUrl).build()
+        val req: Request = Request.Builder().post(reqBody).url(registryUrl).build()
 
         client.newCall(req).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Toast.makeText(this@RegisterActivity,"Lỗi kết nối!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, "Lỗi kết nối!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call, response: Response) {

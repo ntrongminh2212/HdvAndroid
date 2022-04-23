@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/custom_border"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/imgReviewerAvatar"
+        android:src="@drawable/avatar"
+        android:layout_margin="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_round"
+        android:layout_marginRight="7dp">
+
+        <RatingBar
+            android:id="@+id/ratingUserReview"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:layout_marginLeft="20dp"
+            android:progressBackgroundTint="@color/grey_font"
+            android:progressTint="@color/star"
+            android:scaleX=".5"
+            android:scaleY=".5"
+            android:stepSize="0.5"
+            android:transformPivotX="0dp"
+            android:transformPivotY="15dp" />
+
+        <TextView
+            android:id="@+id/txtReviewComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="san pham dung tot san pham dung tot san pham dung tot san pham dung tot san pham dung tot san pham dung tot"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+</LinearLayout>

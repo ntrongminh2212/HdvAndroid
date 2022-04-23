@@ -4,33 +4,73 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.290625" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/border_rating.xml" value="0.3592592592592593" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/border_round.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/bottom_dialog.xml" value="0.3731481481481482" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/custom_border.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/dialog_add_to_cart.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/dialog_corner.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_add_24.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_add_to_cart_24.xml" value="0.36203703703703705" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_back_24.xml" value="0.3592592592592593" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_baseline_shopping_basket_24.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_calendar_24.xml" value="0.3731481481481482" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_cart_24.xml" value="0.38564102564102565" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.290625" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_location_on_24.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_my_store_24.xml" value="0.3851851851851852" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_order_history_24.xml" value="0.32407407407407407" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_order_info_24.xml" value="0.38564102564102565" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_password.xml" value="0.290625" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_person_info_24.xml" value="0.39076923076923076" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_remove_24.xml" value="0.39076923076923076" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.38333333333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_shipping_24.xml" value="0.32407407407407407" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/ic_username.xml" value="0.290625" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/order_row_border.xml" value="0.3731481481481482" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/round_button.xml" value="0.22" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/drawable/toolbar.xml" value="0.3851851851851852" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_create_order.xml" value="0.33" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_login.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_main.xml" value="0.30520833333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_my_cart.xml" value="0.33" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_my_orders.xml" value="0.33" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_personal_info.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_product_detail.xml" value="0.33" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_register.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_result_search.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_search_product.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/act_search_products.xml" value="0.375" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/activity_personal_info.xml" value="0.3802083333333333" />
-        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_home.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/cartitem_row.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/dialog_add_to_cart.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_completed.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_confirmed.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_delivered.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_home.xml" value="0.33" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_personal.xml" value="0.32781954887218046" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_processing.xml" value="0.3807291666666667" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/frag_topdeskita.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/fragmentHome.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/fragment_home.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/fragment_notifications.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/loading_footer.xml" value="0.21875" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/login.xml" value="0.3807291666666667" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/main.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/order_row.xml" value="0.33" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/orderitem_row.xml" value="0.3807291666666667" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/personalopt_row.xml" value="0.33" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/product_row.xml" value="0.3807291666666667" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/register.xml" value="0.3807291666666667" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/review_row.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/layout/row.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/menu/menu_addtocart.xml" value="0.3807291666666667" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/menu/menu_botnav_main.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/menu/menu_tbhome.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/menu/menu_tbsearch.xml" value="0.37552083333333336" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/DeskitaAndroidApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.38564102564102565" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/zLittleMasterz/AndroidStudioProjects/MyApplication/app/src/main/res/layout/login.xml" value="0.264" />
