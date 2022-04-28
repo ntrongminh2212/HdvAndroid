@@ -8,8 +8,8 @@
     android:paddingBottom="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:scaleType="centerCrop"
         android:id="@+id/imgReviewerAvatar"
         android:src="@drawable/avatar"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="san pham dung tot san pham dung tot san pham dung tot san pham dung tot san pham dung tot san pham dung tot"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:gravity="center_vertical"
             android:textColor="@color/black"
             android:padding="10dp"/>

@@ -1,13 +1,25 @@
 package com.example.myapplication.adapter
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.MyOrdersActivity
 import com.example.myapplication.R
 import com.example.myapplication.entities.Order
 import com.example.myapplication.entities.OrderStatus
+import com.google.android.material.internal.ContextUtils.getActivity
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import org.json.JSONObject
+import java.io.IOException
 import java.text.SimpleDateFormat
 
 class OrderViewHolder(val view:View){
@@ -24,7 +36,7 @@ class OrderViewHolder(val view:View){
         txtOrderDate = view.findViewById(R.id.txtOrderDate)
     }
 }
-class OrderAdapter(var context: Context,var lstOrders:ArrayList<Order>):BaseAdapter() {
+class OrderAdapter(var context: Activity,var lstOrders:ArrayList<Order>):BaseAdapter() {
 
     val dateFormat : SimpleDateFormat = SimpleDateFormat("dd/MM/yy HH:mm a")
     override fun getCount(): Int {
@@ -53,7 +65,7 @@ class OrderAdapter(var context: Context,var lstOrders:ArrayList<Order>):BaseAdap
         }
         viewHolder.txtOrderId.text = lstOrders.get(position)._id
         viewHolder.txtTotalOrder.text = lstOrders.get(position).totalPrice.toString()+" $"
-        viewHolder.lstOrderItem.adapter = OrderItemAdapter(context,lstOrders.get(position).orderItems)
+        viewHolder.lstOrderItem.adapter = OrderItemAdapter(context,lstOrders.get(position).orderItems, lstOrders.get(position).orderStatus)
         viewHolder.txtOrderDate.text = dateFormat.format(lstOrders.get(position).createAt)
         justifyListViewHeightBasedOnChildren(viewHolder.lstOrderItem)
         setViewListener(viewHolder,lstOrders.get(position))
@@ -65,19 +77,121 @@ class OrderAdapter(var context: Context,var lstOrders:ArrayList<Order>):BaseAdap
         when(order.orderStatus){
             OrderStatus.Processing ->{
                 button.setText("Huỷ đơn hàng")
-
+                button.setOnClickListener {
+                    AlertDialog.Builder(context)
+                        .setTitle("Hủy đơn hàng")
+                        .setMessage("Bạn có chắc muốn hủy đơn hàng này không?")
+                        .setPositiveButton("Hãy hủy đơn hàng", { dialog, which ->
+                            deleteOrder(order._id)
+                        }).setNegativeButton("Bỏ",null)
+                        .show()
+                }
             }
             OrderStatus.Confirmed->{
-                button.visibility=View.GONE
+                button.setText("Huỷ đơn hàng")
+                button.setOnClickListener {
+                    AlertDialog.Builder(context)
+                        .setTitle("Hủy đơn hàng")
+                        .setMessage("Bạn có chắc muốn hủy đơn hàng này không?")
+                        .setPositiveButton("Hãy hủy đơn hàng", { dialog, which ->
+                            deleteOrder(order._id)
+                        }).setNegativeButton("Bỏ",null)
+                        .show()
+                }
             }
             OrderStatus.Delivered->{
                 button.setText("Tôi đã nhận hàng!")
+                button.setOnClickListener{
+                    receiveProduct(order._id)
+                }
             }
             OrderStatus.Complete->{
-                button.setText("Đánh giá")
-                button.setBackgroundColor(context.resources.getColor(R.color.star))
+                button.visibility=View.GONE
             }
         }
+    }
+
+    fun receiveProduct(orderId:String){
+        val url = context.getString(R.string.putUpdateOrder)+orderId
+        val sharePref = context.getSharedPreferences("userData", AppCompatActivity.MODE_PRIVATE)
+        val userToken = sharePref.getString(context.getString(R.string.token),null)
+        val params = JSONObject().put("userToken",userToken)
+        var jsonSend = JSONObject()
+        jsonSend.put("params",params)
+        jsonSend.put("orderStatus",OrderStatus.Complete.name)
+
+        val jsonType = context.getString(R.string.mediaTypeJSON).toMediaTypeOrNull()
+        val reqBody = RequestBody.create(jsonType,jsonSend.toString())
+        val request = Request.Builder().put(reqBody).url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            @SuppressLint("RestrictedApi")
+            override fun onFailure(call: Call, e: IOException) {
+                getActivity(context)?.runOnUiThread(){
+                    Toast.makeText(
+                        context,
+                        "Lỗi kết nối internet",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            @SuppressLint("RestrictedApi")
+            override fun onResponse(call: Call, response: Response) {
+                val resBody = JSONObject(response.body?.string())
+                if (resBody.has("success")) {
+                    getActivity(context)?.runOnUiThread {
+                        Toast.makeText(
+                            context,
+                            "Cảm ơn bạn, mong bạn sẽ hài lòng với sản phẩm",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        context.finish()
+                    }
+                }
+            }
+        })
+    }
+
+    fun deleteOrder(orderId:String){
+        val url = context.getString(R.string.deleteOrder)+orderId
+        val sharePref = context.getSharedPreferences("userData", AppCompatActivity.MODE_PRIVATE)
+        val userToken = sharePref.getString(context.getString(R.string.token),null)
+        val params = JSONObject().put("userToken",userToken)
+        var jsonSend = JSONObject()
+        jsonSend.put("params",params)
+
+        val jsonType = context.getString(R.string.mediaTypeJSON).toMediaTypeOrNull()
+        val reqBody = RequestBody.create(jsonType,jsonSend.toString())
+        val request = Request.Builder().delete(reqBody).url(url).build()
+        val client = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            @SuppressLint("RestrictedApi")
+            override fun onFailure(call: Call, e: IOException) {
+                getActivity(context)?.runOnUiThread(){
+                    Toast.makeText(
+                        context,
+                        "Lỗi kết nối internet",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            @SuppressLint("RestrictedApi")
+            override fun onResponse(call: Call, response: Response) {
+                val resBody = JSONObject(response.body?.string())
+                if (resBody.has("success")) {
+                    getActivity(context)?.runOnUiThread {
+                        Toast.makeText(
+                            context,
+                            "Đã hủy đơn hàng",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        context.finish()
+                    }
+                }
+            }
+        })
     }
 
     fun justifyListViewHeightBasedOnChildren(listView: ListView) {

@@ -100,10 +100,10 @@ class MyOrdersActivity : AppCompatActivity() {
                     lstDeliveredOrders: ArrayList<Order>,
                     lstCompletedOrders: ArrayList<Order>,){
         val adapter = OrderStatusPagerAdapter(supportFragmentManager)
-        adapter.addFragment(ProcessingFragment(lstProcessOrders))
-        adapter.addFragment(ConfirmedFragment(lstConfirmedOrders))
-        adapter.addFragment(DeliveredFragment(lstDeliveredOrders))
-        adapter.addFragment(CompletedFragment(lstCompletedOrders))
+        adapter.addFragment(ProcessingFragment(lstProcessOrders,this))
+        adapter.addFragment(ConfirmedFragment(lstConfirmedOrders,this))
+        adapter.addFragment(DeliveredFragment(lstDeliveredOrders,this))
+        adapter.addFragment(CompletedFragment(lstCompletedOrders,this))
         vpOrderStatus.adapter = adapter
         tabOrderStatus.setupWithViewPager(vpOrderStatus)
 

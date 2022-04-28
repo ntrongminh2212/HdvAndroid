@@ -15,14 +15,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtProductName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="63dp"
             android:text="Ten san pham ten san pham ten san pham"
             android:textColor="@color/textBlack"
             android:textSize="17dp"
@@ -38,7 +38,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="68dp"
             android:layout_weight="1"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="5dp">
@@ -82,5 +82,17 @@
                 android:textColor="@color/textBlack"
                 android:textSize="18dp" />
         </RelativeLayout>
+        <Button
+            android:id="@+id/bttRateProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Đánh giá"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_star_24"
+            android:backgroundTint="@color/price"
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

@@ -9,6 +9,8 @@
     <string name="putAddToCart">https://deskita-ecommerce.herokuapp.com/api/v1/add-to-cart</string>
     <string name="postCreateOrder">https://deskita-ecommerce.herokuapp.com/api/v1/order/create</string>
     <string name="getMyOrders">https://deskita-ecommerce.herokuapp.com/api/v1/orders/me</string>
+    <string name="putUpdateOrder">https://deskita-ecommerce.herokuapp.com/api/v1/admin/order/</string>
+    <string name="deleteOrder">https://deskita-ecommerce.herokuapp.com/api/v1/order/</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_topseller">Top Deskita</string>

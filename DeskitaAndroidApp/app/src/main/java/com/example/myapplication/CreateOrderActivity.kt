@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.myapplication.adapter.OrderItemAdapter
 import com.example.myapplication.entities.CartItem
+import com.example.myapplication.entities.OrderStatus
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.act_create_order.*
 import kotlinx.android.synthetic.main.act_my_cart.*
@@ -25,7 +26,7 @@ class CreateOrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_create_order)
         lstCartItems = intent.getSerializableExtra("newOrders") as ArrayList<CartItem>
-        lstOrderItems.adapter = OrderItemAdapter(this,lstCartItems)
+        lstOrderItems.adapter = OrderItemAdapter(this,lstCartItems, OrderStatus.Processing)
         justifyListViewHeightBasedOnChildren(lstOrderItems)
         setItemsPrice()
     }

@@ -8,7 +8,7 @@
     tools:context=".MyCartActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbMain"
+        android:id="@+id/tbReviewProduct"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -42,10 +42,10 @@
             <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@drawable/toolbar"
                 android:layout_alignParentRight="true"
-                android:textOn="Lưu"
-                android:textOff="Sửa"/>
+                android:background="@drawable/toolbar"
+                android:textOff="Sửa"
+                android:textOn="Lưu" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

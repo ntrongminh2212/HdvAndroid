@@ -8,7 +8,7 @@
     tools:context=".fragment.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbMain"
+        android:id="@+id/tbReviewProduct"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
