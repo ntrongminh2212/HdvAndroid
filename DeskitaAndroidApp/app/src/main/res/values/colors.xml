@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#0000FFFF</color>
-    <color name="textBlack">#BF000000</color>
+    <color name="textBlack">#F8464545</color>
     <color name="price">#F59C00</color>
     <color name="star">#F7CF07</color>
     <color name="toolbar">#B4B4B4</color>
