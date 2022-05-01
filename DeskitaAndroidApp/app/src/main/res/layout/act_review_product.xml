@@ -53,7 +53,7 @@
             tools:context=".ProductDetailActivity">
 
             <ImageView
-                android:id="@+id/lstProductImgs"
+                android:id="@+id/imgReviewProduct"
                 android:layout_width="205dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal" />
@@ -127,7 +127,7 @@
             <View
                 android:id="@+id/separater0"
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
+                android:layout_height="5dp"
                 android:layout_below="@id/layoutRating"
                 android:background="?android:attr/listDivider" />
 
@@ -197,21 +197,36 @@
                             android:scaleY=".5"
                             android:stepSize="0.5"
                             android:transformPivotX="0dp"
-                            android:transformPivotY="15dp" />
+                            android:transformPivotY="20dp" />
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/txtMyReview"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:hint="Viết đánh giá của bạn..."
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"/>
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/txtMyReview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:hint="Viết đánh giá của bạn..."
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"/>
 
+                        <ImageButton
+                            android:id="@+id/bttSendReview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_send_24"
+                            android:layout_weight="0"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

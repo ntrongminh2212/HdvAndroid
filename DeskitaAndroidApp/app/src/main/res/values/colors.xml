@@ -13,4 +13,5 @@
     <color name="star">#F7CF07</color>
     <color name="toolbar">#B4B4B4</color>
     <color name="itemview">#868585</color>
+    <color name="confirm">#04A86E</color>
 </resources>

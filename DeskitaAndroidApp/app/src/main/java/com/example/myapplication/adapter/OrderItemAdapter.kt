@@ -9,11 +9,16 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.myapplication.ProductDetailActivity
 import com.example.myapplication.R
 import com.example.myapplication.ReviewProductActivity
 import com.example.myapplication.entities.CartItem
 import com.example.myapplication.entities.OrderStatus
+import com.example.myapplication.entities.ProductContainer
+import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
+import okhttp3.*
+import java.io.IOException
 
 class OrderItemViewHolder(rowView:View){
     var imgOrderProduct: ImageView

@@ -70,16 +70,11 @@ class PersonalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var listPersonalOption : List<String> = listOf(
             "Thông tin cá nhân"
-            ,"Cửa hàng của bạn"
             ,"Đơn đặt hàng của bạn"
-            ,"Lịch sử mua hàng"
             ,"Đăng xuất")
-
         var icons: IntArray = intArrayOf(
             R.drawable.ic_person_info_24
-            ,R.drawable.ic_my_store_24
             ,R.drawable.ic_shipping_24
-            ,R.drawable.ic_order_history_24
             ,R.drawable.ic_logout)
 
         lstPersonalOption.adapter = PersonalOpAdapter(requireContext(),listPersonalOption,icons)
@@ -87,12 +82,12 @@ class PersonalFragment : Fragment() {
             if (listPersonalOption.get(position).compareTo("Thông tin cá nhân",true)==0){
 
             }
-            if (listPersonalOption.get(position).compareTo("Cửa hàng của bạn",true)==0){
-
-            }
             if (listPersonalOption.get(position).compareTo("Đơn đặt hàng của bạn",true)==0){
                 val intent = Intent(requireContext(),MyOrdersActivity::class.java)
                 startActivity(intent)
+            }
+            if (listPersonalOption.get(position).compareTo("Đăng xuất",true)==0){
+
             }
         }
 

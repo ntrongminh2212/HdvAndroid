@@ -11,6 +11,7 @@
     <string name="getMyOrders">https://deskita-ecommerce.herokuapp.com/api/v1/orders/me</string>
     <string name="putUpdateOrder">https://deskita-ecommerce.herokuapp.com/api/v1/admin/order/</string>
     <string name="deleteOrder">https://deskita-ecommerce.herokuapp.com/api/v1/order/</string>
+    <string name="putReview">https://deskita-ecommerce.herokuapp.com/api/v1/review</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_topseller">Top Deskita</string>

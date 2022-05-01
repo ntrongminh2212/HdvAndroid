@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,17 +8,14 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.myapplication.adapter.ReviewAdapter
 import com.example.myapplication.entities.Product
 import com.example.myapplication.entities.ProductImage
-import com.example.myapplication.entities.Review
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.act_product_detail.*
 import kotlinx.android.synthetic.main.act_result_search.*
 import kotlinx.android.synthetic.main.review_row.view.*
@@ -27,51 +23,6 @@ import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
-
-class ReviewViewHolder(row:View){
-    var imgReviewerAvatar: CircleImageView
-    var ratingUserReview: RatingBar
-    var txtReviewComment: TextView
-
-    init {
-        imgReviewerAvatar = row.imgReviewerAvatar
-        ratingUserReview = row.ratingUserReview
-        txtReviewComment = row.txtReviewComment
-    }
-}
-
-class ReviewAdapter(var context: Context, var lstReviews: List<Review>): BaseAdapter(){
-    override fun getCount(): Int {
-        return lstReviews.size
-    }
-
-    override fun getItem(position: Int): Any {
-        return lstReviews.get(position)
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var view: View?
-        var viewHolder: ReviewViewHolder
-        if (convertView ==null){
-            var inflater: LayoutInflater = LayoutInflater.from(context)
-            view = inflater.inflate(R.layout.review_row,null)
-            viewHolder = ReviewViewHolder(view)
-            view.tag = viewHolder
-        }else{
-            view = convertView
-            viewHolder = view.tag as ReviewViewHolder
-        }
-        viewHolder.ratingUserReview.rating = lstReviews.get(position).rating.toFloat()
-        viewHolder.txtReviewComment.text = lstReviews.get(position).comment
-        viewHolder.imgReviewerAvatar.setImageResource(R.drawable.avatar)
-        return view
-    }
-
-}
 
 class ProductDetailActivity : AppCompatActivity() {
     lateinit var product: Product
