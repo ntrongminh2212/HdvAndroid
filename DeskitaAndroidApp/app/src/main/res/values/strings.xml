@@ -12,6 +12,8 @@
     <string name="putUpdateOrder">https://deskita-ecommerce.herokuapp.com/api/v1/admin/order/</string>
     <string name="deleteOrder">https://deskita-ecommerce.herokuapp.com/api/v1/order/</string>
     <string name="putReview">https://deskita-ecommerce.herokuapp.com/api/v1/review</string>
+    <string name="getPersonalInfo">https://deskita-ecommerce.herokuapp.com/api/v1/me</string>
+    <string name="putUpdateProfile">https://deskita-ecommerce.herokuapp.com/api/v1/user/update-profile</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_topseller">Top Deskita</string>
@@ -23,6 +25,9 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="_id">_id</string>
+    <string name="avatarPr">avatarPr</string>
+    <string name="userAdresses">userAddresses</string>
+    <string name="defaultAddress">defaultAddress</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

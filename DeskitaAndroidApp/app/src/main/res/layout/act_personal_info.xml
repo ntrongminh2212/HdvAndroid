@@ -7,14 +7,64 @@
     android:orientation="vertical"
     tools:context=".PersonalInfoActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbReviewProduct"
+        style="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme"
+        app:titleTextColor="@color/black">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:onClick="goBack"
+                android:src="@drawable/ic_back_24"
+                tools:ignore="OnClick,UsingOnClickInXml" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="100dp"
+                android:gravity="center"
+                android:text="Thông tin cá nhân"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:drawableLeft="@drawable/ic_edit_24"
+        android:text="Đổi ảnh đại diện"
+        android:textColor="@color/custom_textview_button"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="italic"
+        android:onClick="changeAvatar"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgMyAvatar"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="Avatar"
-        android:src="@drawable/avatar" />
+        android:src="@drawable/user_avatar"
+        android:clickable="true"
+        android:onClick="changeAvatar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,11 +93,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_alignParentRight="true"
+                android:clickable="true"
                 android:drawableRight="@drawable/ic_edit_24"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
+                android:onClick="changePersonalData"
                 android:text="Thay đổi"
-                android:textColor="#1A4AF8"
+                android:textColor="@color/custom_textview_button"
                 android:textSize="16dp"
                 android:textStyle="italic" />
         </RelativeLayout>
@@ -152,11 +204,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_alignParentRight="true"
+                android:clickable="true"
                 android:drawableRight="@drawable/ic_edit_24"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
+                android:onClick="changeDefaultLocation"
                 android:text="Thay đổi"
-                android:textColor="#1A4AF8"
+                android:textColor="@color/custom_textview_button"
                 android:textSize="16dp"
                 android:textStyle="italic" />
         </RelativeLayout>
@@ -213,11 +267,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_alignParentRight="true"
+                android:clickable="true"
                 android:drawableRight="@drawable/ic_edit_24"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
                 android:text="Thay đổi"
-                android:textColor="#1A4AF8"
+                android:textColor="@color/custom_textview_button"
                 android:textSize="16dp"
                 android:textStyle="italic" />
         </RelativeLayout>

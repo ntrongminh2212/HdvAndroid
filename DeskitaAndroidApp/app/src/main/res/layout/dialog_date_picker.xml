@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_dialog">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_calendar_24" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/layoutRating"
+        android:layout_margin="5dp"
+        android:background="?android:attr/listDivider" />
+
+    <DatePicker
+        android:id="@+id/dpDateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/bttConfirmDate"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:text="XÁC NHẬN"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_confirm_35"
+        android:paddingLeft="130dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/price"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

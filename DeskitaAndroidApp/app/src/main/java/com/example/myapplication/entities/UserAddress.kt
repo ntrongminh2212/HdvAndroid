@@ -1,5 +1,6 @@
 package com.example.myapplication.entities
 
+import java.io.Serializable
 import java.util.*
 
 class UserAddress(
@@ -13,7 +14,7 @@ class UserAddress(
 class Avatar(
     var public_id:String,
     var url : String
-)
+):Serializable
 
 class User(
     var avatar : Avatar,
@@ -25,4 +26,6 @@ class User(
     var emailUser : String,
     var createAt : Date,
     var role : String
-)
+):Serializable
+
+class UserContainer(var user:User)

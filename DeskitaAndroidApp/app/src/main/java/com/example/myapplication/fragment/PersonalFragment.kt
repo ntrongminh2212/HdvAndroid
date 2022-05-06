@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.myapplication.MyOrdersActivity
+import com.example.myapplication.PersonalInfoActivity
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.frag_personal.*
 
@@ -80,7 +81,8 @@ class PersonalFragment : Fragment() {
         lstPersonalOption.adapter = PersonalOpAdapter(requireContext(),listPersonalOption,icons)
         lstPersonalOption.setOnItemClickListener { adapterView, view, position, id ->
             if (listPersonalOption.get(position).compareTo("Thông tin cá nhân",true)==0){
-
+                val intent = Intent(requireContext(),PersonalInfoActivity::class.java)
+                startActivity(intent)
             }
             if (listPersonalOption.get(position).compareTo("Đơn đặt hàng của bạn",true)==0){
                 val intent = Intent(requireContext(),MyOrdersActivity::class.java)

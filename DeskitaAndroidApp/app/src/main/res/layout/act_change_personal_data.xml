@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChangePersonalDataAct">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbReviewProduct"
+        style="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme"
+        app:titleTextColor="@color/black"
+        android:layout_marginBottom="100dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:onClick="goBack"
+                android:src="@drawable/ic_back_24"
+                tools:ignore="OnClick,UsingOnClickInXml" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="85dp"
+                android:gravity="center"
+                android:text="Sửa thông tin cá nhân"
+                android:textColor="@color/black"
+                android:textSize="23sp" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="Họ tên:      "
+            android:textColor="@color/textBlack"
+            android:textSize="18dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/editFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="Họ tên đầy đủ"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:text="Ngày sinh:"
+            android:textColor="@color/textBlack"
+            android:textSize="18dp"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/txtDateOfBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="00 / 00 / 0000"
+            android:textColor="@color/textBlack"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/bttPickDate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Chọn"
+            android:backgroundTint="#E3E4E4"
+            android:drawableLeft="@drawable/ic_calendar_15"
+            android:textColor="@color/textBlack"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="Điện thoại:"
+            android:textColor="@color/textBlack"
+            android:textSize="18dp"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/editPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="Số điện thoại"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bttConfirmChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:backgroundTint="@color/confirm"
+        android:drawableLeft="@drawable/ic_confirm_35"
+        android:paddingLeft="110dp"
+        android:drawablePadding="20dp"
+        android:text="Lưu thay đổi"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"/>
+</LinearLayout>
