@@ -87,7 +87,7 @@
             android:id="@+id/bttDecreaseQuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/orange"
             android:src="@drawable/ic_remove_24"/>
 
         <EditText
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_plus_24"
-            android:backgroundTint="#4CAF50"/>
+            android:backgroundTint="@color/orange"/>
     </LinearLayout>
 
     <View
@@ -123,6 +123,6 @@
         android:drawableLeft="@drawable/ic_confirm_35"
         android:paddingLeft="130dp"
         android:textStyle="bold"
-        android:backgroundTint="@color/price"
+        android:backgroundTint="@color/confirm"
         android:layout_marginTop="5dp"/>
 </LinearLayout>

@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bnavAddToCart">
+        android:layout_above="@+id/lyAddToCart">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,8 +19,8 @@
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/lstProductImgs"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:layout_marginBottom="5dp"
+                android:layout_height="450dp"
+                android:layout_marginTop="10dp"
                 app:iss_auto_cycle="true"
                 app:iss_corner_radius="30"
                 app:iss_delay="0"
@@ -38,7 +38,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="Ten san pham"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="17dp" />
 
             <TextView
                 android:id="@+id/txtPrice"
@@ -49,7 +49,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="10.000đ"
                 android:textColor="@color/price"
-                android:textSize="30dp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -68,44 +68,70 @@
 
                 <TextView
                     android:id="@+id/txtRatingPoint"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="0"
                     android:gravity="center"
                     android:text="4.5"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
+                    android:textColor="@color/textBlack"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <RatingBar
                     android:id="@+id/ratingProduct"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:clickable="false"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/grey_font"
                     android:progressTint="@color/star"
-                    android:scaleX=".6"
-                    android:scaleY=".6"
+                    android:scaleX="0.6"
+                    android:scaleY="0.6"
                     android:stepSize="0.5"
                     android:transformPivotX="0dp"
-                    android:transformPivotY="35dp" />
+                    android:transformPivotY="20dp" />
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/separater0"
+            <LinearLayout
+                android:id="@+id/lyTittle"
                 android:layout_width="match_parent"
-                android:layout_height="7dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layoutRating"
-                android:background="?android:attr/listDivider" />
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/separater0"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:drawableLeft="@drawable/ic_rate_review_24"
+                    android:drawablePadding="7dp"
+                    android:padding="5dp"
+                    android:text="Đánh giá:"
+                    android:textColor="@color/textBlack"
+                    android:textSize="22dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/layoutRating"
+                    android:background="?android:attr/listDivider" />
+            </LinearLayout>
 
             <ListView
                 android:id="@+id/lstReviews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/separater0" />
+                android:layout_below="@+id/lyTittle" />
         </RelativeLayout>
     </ScrollView>
 
@@ -131,34 +157,32 @@
             android:src="@drawable/ic_back_24" />
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnavAddToCart"
+
+    <LinearLayout
+        android:id="@+id/lyAddToCart"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/add_to_cart_color"
+        android:gravity="center"
         android:onClick="dialogAddToCart"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:background="@color/confirm">
+            android:text="Thêm vào giỏ"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:text="Thêm vào giỏ"
-                android:textColor="@color/white"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="53dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_add_to_cart_24" />
-        </LinearLayout>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <ImageView
+            android:layout_width="53dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_add_to_cart_24" />
+    </LinearLayout>
 </RelativeLayout>

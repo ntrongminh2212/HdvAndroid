@@ -8,6 +8,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -26,35 +28,55 @@ import java.io.IOException
 
 class ProductDetailActivity : AppCompatActivity() {
     lateinit var product: Product
-
+    lateinit var userToken: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_product_detail)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         product = intent.getSerializableExtra("product") as Product
+        val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
+        userToken = sharePref.getString(getString(R.string.token), "")!!
+        setControl()
+
+        if (product.reviews.size > 0) {
+            lstReviews.adapter = ReviewAdapter(this, product.reviews)
+            justifyListViewHeightBasedOnChildren(lstReviews)
+        } else {
+            val noReview: List<String> = listOf(
+                "Sản phẩm hiện chưa có đánh giá. Hãy mua và trở thành người đầu" +
+                        " tiên đánh giá sản phẩm này!"
+            )
+            lstReviews.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, noReview)
+        }
+    }
+
+    fun setControl() {
         setSliderProductImgs(product.images)
         ratingProduct.rating = product.rating.toFloat()
         txtRatingPoint.text = product.rating.toString()
         txtProductName.text = product.name
-        txtPrice.text = product.price.toString()+"$"
+        txtPrice.text = product.price.toString() + "$"
 
-        if (product.reviews.size>0) {
-            lstReviews.adapter = ReviewAdapter(this, product.reviews)
-        }else{
-            val noReview:List<String> = listOf("Sản phẩm hiện chưa có đánh giá. Hãy mua và trở thành người đầu" +
-                    " tiên đánh giá sản phẩm này!")
-            lstReviews.adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,noReview)
+        var overallRate: Double = 0.0
+        if (!product.reviews.isEmpty()) {
+            for (review in product.reviews) {
+                overallRate = overallRate + review.rating
+            }
+            overallRate = overallRate / product.reviews.size
         }
+        ratingProduct.rating = overallRate.toFloat()
+        txtRatingPoint.text = overallRate.toString()
     }
 
-    fun setSliderProductImgs(imgsList: List<ProductImage>){
+
+    fun setSliderProductImgs(imgsList: List<ProductImage>) {
         val lstSlideModel: ArrayList<SlideModel> = ArrayList()
         var i = 1
-        for (img in imgsList){
-            lstSlideModel.add(SlideModel(img.url,i.toString()))
+        for (img in imgsList) {
+            lstSlideModel.add(SlideModel(img.url, i.toString()))
             i++
         }
-        lstProductImgs.setImageList(lstSlideModel,ScaleTypes.CENTER_INSIDE)
+        lstProductImgs.setImageList(lstSlideModel, ScaleTypes.CENTER_INSIDE)
     }
 
     fun goBack(view: android.view.View) {
@@ -62,66 +84,74 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun dialogAddToCart(view: android.view.View) {
-        val dialogAddToCart = BottomSheetDialog(this,R.style.Theme_Design_BottomSheetDialog)
-        val viewAddToCart = LayoutInflater.from(this).inflate(R.layout.dialog_add_to_cart,null)
+        if (userToken.isBlank()) {
+            startActLogin()
+            return
+        }
+        val dialogAddToCart = BottomSheetDialog(this, R.style.Theme_Design_BottomSheetDialog)
+        val viewAddToCart = LayoutInflater.from(this).inflate(R.layout.dialog_add_to_cart, null)
 
-        Picasso.get().load(product.images[0].url).into(viewAddToCart.findViewById<ImageView>(R.id.imgAddProduct))
+        Picasso.get().load(product.images[0].url)
+            .into(viewAddToCart.findViewById<ImageView>(R.id.imgAddProduct))
         viewAddToCart.findViewById<TextView>(R.id.txtAddProductName).setText(product.name)
-        viewAddToCart.findViewById<TextView>(R.id.txtAddProductPrice).setText(product.price.toString()+"$")
+        viewAddToCart.findViewById<TextView>(R.id.txtAddProductPrice)
+            .setText(product.price.toString() + "$")
 
         val txtQuan = viewAddToCart.findViewById<EditText>(R.id.txtQuantities)
 
-        txtQuan.addTextChangedListener(object :TextWatcher{
+        txtQuan.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 return
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                 return
+                return
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (Integer.parseInt(txtQuan.text.toString())>30){
+                if (Integer.parseInt(txtQuan.text.toString()) > 30) {
                     txtQuan.setText("0")
                 }
             }
         })
 
         viewAddToCart.findViewById<ImageButton>(R.id.bttDecreaseQuan).setOnClickListener({
-            var quan:Int = Integer.parseInt(txtQuan.text.toString())
-            if (quan>0) quan--;
+            var quan: Int = Integer.parseInt(txtQuan.text.toString())
+            if (quan > 0) quan--;
             txtQuan.setText(quan.toString())
         })
 
         viewAddToCart.findViewById<ImageButton>(R.id.bttIncreaseQuan).setOnClickListener({
-            var quan:Int = Integer.parseInt(txtQuan.text.toString())
-            if (quan<30) quan++;
+            var quan: Int = Integer.parseInt(txtQuan.text.toString())
+            if (quan < 30) quan++;
             txtQuan.setText(quan.toString())
         })
 
         viewAddToCart.findViewById<Button>(R.id.bttConfirmCart).setOnClickListener({
             val quan: Int = Integer.parseInt(txtQuan.text.toString())
             val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
-            val userToken = sharePref.getString(getString(R.string.token),null)
-            callAddToCart(quan,userToken,dialogAddToCart)
+            val userToken = sharePref.getString(getString(R.string.token), null)
+            callAddToCart(quan, userToken, dialogAddToCart)
         })
         dialogAddToCart.setContentView(viewAddToCart)
         dialogAddToCart.show()
     }
 
     private fun callAddToCart(quan: Int, userToken: String?, dialogAddToCart: BottomSheetDialog) {
-        var url= getString(R.string.putAddToCart)
+        var url = getString(R.string.putAddToCart)
 
         var data = JSONObject()
-        data.put("data",JSONObject().put("product",JSONObject().put("_id",product._id)))
-        data.getJSONObject("data").put("quantity",quan)
-        data.put("params",
-            JSONObject().put("userToken",userToken))
+        data.put("data", JSONObject().put("product", JSONObject().put("_id", product._id)))
+        data.getJSONObject("data").put("quantity", quan)
+        data.put(
+            "params",
+            JSONObject().put("userToken", userToken)
+        )
 
-        Log.d("json123",data.toString())
+        Log.d("json123", data.toString())
 
         val JSON = getString(R.string.mediaTypeJSON).toMediaTypeOrNull()
-        val rqBody = RequestBody.create(JSON,data.toString())
+        val rqBody = RequestBody.create(JSON, data.toString())
         val request = Request.Builder().url(url).put(rqBody).build()
         val client = OkHttpClient()
         client.newCall(request).enqueue(object : Callback {
@@ -150,7 +180,33 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun startActMyCart(item: android.view.MenuItem) {
-        var intent: Intent = Intent(this,MyCartActivity::class.java)
+        if (userToken.isBlank()) {
+            startActLogin()
+        } else {
+            var intent: Intent = Intent(this, MyCartActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+    private fun startActLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down)
+    }
+
+    fun justifyListViewHeightBasedOnChildren(listView: ListView) {
+        val adapter: Adapter = listView.getAdapter() ?: return
+        val vg: ViewGroup = listView
+        var totalHeight = 0
+        for (i in 0 until adapter.getCount()) {
+            val listItem: View = adapter.getView(i, null, vg)
+            listItem.measure(0, 0)
+            totalHeight += listItem.measuredHeight
+        }
+        val par: ViewGroup.LayoutParams = listView.getLayoutParams()
+        par.height = totalHeight + listView.getDividerHeight() * (adapter.getCount() - 1)
+        listView.setLayoutParams(par)
+        listView.requestLayout()
     }
 }

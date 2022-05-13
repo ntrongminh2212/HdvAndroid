@@ -121,7 +121,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:text="200$"
-            android:textColor="@color/price"
+            android:textColor="@color/orange"
             android:textSize="18dp"
             android:layout_marginRight="10dp"/>
     </RelativeLayout>

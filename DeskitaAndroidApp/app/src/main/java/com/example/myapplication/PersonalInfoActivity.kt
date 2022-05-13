@@ -35,7 +35,6 @@ import com.google.gson.Gson
 
 
 class PersonalInfoActivity : AppCompatActivity() {
-
     private val REQUEST_EXTERNAL_STORAGE = 1
     private val PERMISSIONS_STORAGE = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -48,46 +47,29 @@ class PersonalInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_personal_info)
-        getPersonalInfo()
-    }
-
-    fun getPersonalInfo() {
         val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
-        val userToken = sharePref.getString(getString(R.string.token), null)
-
-        val url: HttpUrl = getString(R.string.getPersonalInfo).toHttpUrl()
-            .newBuilder().addQueryParameter("userToken", userToken).build()
-
-        val request = Request.Builder().get().url(url).build()
-        val client: OkHttpClient = OkHttpClient()
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                this@PersonalInfoActivity.runOnUiThread {
-                    Toast.makeText(
-                        this@PersonalInfoActivity,
-                        "Lỗi kết nối mạng", Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val resBody = response.body?.string()
-                val gson = GsonBuilder().create()
-                val userContainer = gson.fromJson(resBody, UserContainer::class.java)
-                this@PersonalInfoActivity.runOnUiThread {
-                    setContent(userContainer.user)
-                }
-            }
-        })
+        val userMeJson = sharePref.getString(getString(R.string.userMeJson),"")
+        user = Gson().fromJson(userMeJson,User::class.java)
+        setContent()
     }
 
-    private fun setContent(user: User) {
+    private fun setContent() {
         Picasso.get().load(user.avatar.url).placeholder(R.drawable.user_avatar).into(imgMyAvatar)
         txtFullName.text = user.name
         txtDateOfBirth.text = user.dateOfBirth
         txtPhoneNumber.text = user.phoneNumber
         txtEmail.text = user.emailUser
         this.user = user
+        var sharePref = getSharedPreferences("userData", MODE_PRIVATE)
+        sharePref.edit()
+            .putString(getString(R.string.avatar),user.avatar.url)
+
+        val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress)," ")
+        if(!defaultAddressJson!!.isBlank()) {
+            var defaultAdress = Gson().fromJson(defaultAddressJson, UserAddress::class.java)
+            txtHouseAdrress.setText(defaultAdress.address)
+            txtTown.setText(defaultAdress.city)
+        }
     }
 
     fun goBack(view: android.view.View) {
@@ -129,8 +111,9 @@ class PersonalInfoActivity : AppCompatActivity() {
             putUpdateProfile(encodedImage)
         }
         if (resultCode == RESULT_OK && requestCode == CHANGE_PERSONAL_CODE) {
-            finish()
-            startActivity(getIntent())
+            var sharePref = getSharedPreferences("userData", MODE_PRIVATE)
+            val token = sharePref.getString(getString(R.string.token), null)
+            getPersonalInfo(token!!)
         }
         if (resultCode == RESULT_OK && requestCode == CHANGE_DEFAULT_LOCATION_CODE) {
             val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
@@ -179,13 +162,45 @@ class PersonalInfoActivity : AppCompatActivity() {
                 val resJson = JSONObject(body)
                 if (resJson.has("success")) {
                     this@PersonalInfoActivity.runOnUiThread {
-                        val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
-                        sharedPref.edit()
+                        sharePref.edit()
                             .putString(getString(R.string.avatarPr),avatarPr)
                             .commit()
-                        finish()
-                        startActivity(getIntent())
+                        getPersonalInfo(token!!)
                     }
+                }
+            }
+        })
+    }
+
+    fun getPersonalInfo(userToken:String){
+        val url: HttpUrl = getString(R.string.getPersonalInfo).toHttpUrl()
+            .newBuilder().addQueryParameter("userToken", userToken).build()
+
+        val request = Request.Builder().get().url(url).build()
+        val client: OkHttpClient = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                this@PersonalInfoActivity.runOnUiThread {
+                    Toast.makeText(
+                        this@PersonalInfoActivity,
+                        "Lỗi kết nối mạng", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val resBody = response.body?.string()
+                val gson = GsonBuilder().create()
+                val userContainer = gson.fromJson(resBody, UserContainer::class.java)
+                this@PersonalInfoActivity.runOnUiThread {
+                    val userMeJson = gson.toJson(userContainer.user)
+                    val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
+
+                    sharedPref.edit()
+                        .putString(getString(R.string.userMeJson),userMeJson)
+                        .commit()
+                    finish()
+                    startActivity(getIntent())
                 }
             }
         })

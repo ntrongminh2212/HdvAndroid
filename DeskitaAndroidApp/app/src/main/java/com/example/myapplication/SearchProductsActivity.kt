@@ -26,11 +26,13 @@ import java.io.IOException
 class SearchProductsActivity : AppCompatActivity() {
     var strSearch: String = ""
     var lstProductResult: ArrayList<Product> = ArrayList()
+    lateinit var userToken:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_search_products)
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        userToken = sharedPref.getString(getString(R.string.token), "")!!
         strSearch = sharedPref.getString(getString(R.string.save_search_str),"").toString()
         txtSearcher.setText(strSearch)
         txtSearcher.requestFocus()
@@ -168,7 +170,18 @@ class SearchProductsActivity : AppCompatActivity() {
     }
 
     fun startActMyCart(item: android.view.MenuItem) {
-        var intent: Intent = Intent(this,MyCartActivity::class.java)
+        if (userToken.isBlank())
+        {
+            actLogin()
+        }else {
+            var intent: Intent = Intent(this, MyCartActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun actLogin() {
+        val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_up,R.anim.slide_out_down)
     }
 }

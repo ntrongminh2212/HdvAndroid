@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtTittle"
                     android:layout_marginLeft="30dp"
-                    android:text="Nguyễn Trọng Minh | 0932496909"
+                    android:text=""
                     android:textColor="@color/textBlack"
                     android:textSize="17dp" />
 
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtRecNamePhone"
                     android:layout_marginLeft="30dp"
-                    android:text="282/8/2a Bùi Hữu Nghĩa"
+                    android:text=""
                     android:textColor="@color/textBlack"
                     android:textSize="17dp" />
 
@@ -100,17 +100,18 @@
                     android:layout_below="@+id/txtHouseAdrress"
                     android:layout_marginLeft="30dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Phường 2,Quận Bình Thạnh, TP. Hồ Chí Minh"
+                    android:text=""
                     android:textColor="@color/textBlack"
                     android:textSize="17dp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:rotationY="180"
-                    android:src="@drawable/ic_back_24" />
+                    android:src="@drawable/ic_back_24"
+                    android:onClick="actManageLocation"/>
             </RelativeLayout>
 
             <View
@@ -243,7 +244,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/price"
+            android:textColor="@color/orange"
             android:textSize="21dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -254,7 +255,7 @@
             android:id="@+id/bttDatHang"
             android:layout_width="wrap_content"
             android:layout_height="55dp"
-            android:backgroundTint="@color/price"
+            android:backgroundTint="@color/orange"
             android:onClick="callCreateOrder"
             android:text="Đặt hàng"
             android:textSize="15dp"

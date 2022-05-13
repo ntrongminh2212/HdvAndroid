@@ -8,9 +8,12 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.Toast
 import com.example.myapplication.entities.User
+import com.example.myapplication.entities.UserContainer
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.act_change_personal_data.*
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import org.json.JSONObject
 import java.io.IOException

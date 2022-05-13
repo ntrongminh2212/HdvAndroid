@@ -11,6 +11,9 @@ import android.widget.*
 import com.example.myapplication.adapter.OrderItemAdapter
 import com.example.myapplication.entities.CartItem
 import com.example.myapplication.entities.OrderStatus
+import com.example.myapplication.entities.User
+import com.example.myapplication.entities.UserAddress
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.act_create_order.*
 import kotlinx.android.synthetic.main.act_my_cart.*
@@ -22,12 +25,25 @@ import java.io.IOException
 class CreateOrderActivity : AppCompatActivity() {
     var lstCartItems :ArrayList<CartItem> = arrayListOf()
     var itemsPrice:Int = 0
+    private val SELECT_LOCATION_CODE = 1
+    lateinit var user:User
+    lateinit var receiveAddress:UserAddress
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_create_order)
+
         lstCartItems = intent.getSerializableExtra("newOrders") as ArrayList<CartItem>
         lstOrderItems.adapter = OrderItemAdapter(this,lstCartItems, OrderStatus.Processing)
         justifyListViewHeightBasedOnChildren(lstOrderItems)
+
+        val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
+        val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress), "")
+        val userMeJson = sharePref.getString(getString(R.string.userMeJson),"")
+        user = Gson().fromJson(userMeJson,User::class.java)
+        receiveAddress = Gson().fromJson(defaultAddressJson,UserAddress::class.java)
+
+        setReceiveInfo()
         setItemsPrice()
     }
 
@@ -102,6 +118,12 @@ class CreateOrderActivity : AppCompatActivity() {
         itemsPrice = totalPay.toInt()
     }
 
+    fun setReceiveInfo(){
+        txtRecNamePhone.text = user.name+" | "+ user.phoneNumber
+        txtHouseAdrress.text = receiveAddress.address
+        txtTown.text = receiveAddress.city
+    }
+
     fun parseJsonData():JSONObject{
         var data = JSONObject()
         data.put("itemsPrice",itemsPrice)
@@ -125,7 +147,7 @@ class CreateOrderActivity : AppCompatActivity() {
         shippingInfo.put("address",txtHouseAdrress.text.toString())
         shippingInfo.put("city",txtTown.text.toString())
         shippingInfo.put("country","Vietnam")
-        shippingInfo.put("phoneNo","0932496909")
+        shippingInfo.put("phoneNo",user.phoneNumber)
         shippingInfo.put("postalCode","12345")
         data.put("shippingInfo",shippingInfo)
 
@@ -133,5 +155,20 @@ class CreateOrderActivity : AppCompatActivity() {
         data.put("taxPrice",0)
         data.put("totalPrice",itemsPrice)
         return data
+    }
+
+    fun actManageLocation(view: View) {
+        val intent = Intent(this,ManageLocationActivity::class.java)
+        intent.putExtra("purpose",2)
+        startActivityForResult(intent,SELECT_LOCATION_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== RESULT_OK && requestCode == SELECT_LOCATION_CODE){
+            val address:UserAddress = data?.getSerializableExtra("address") as UserAddress
+            this.receiveAddress = address
+            setReceiveInfo()
+        }
     }
 }

@@ -11,25 +11,31 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.entities.Product
+import com.example.myapplication.entities.User
+import com.example.myapplication.entities.UserContainer
 import com.example.myapplication.fragment.HomeFragment
 import com.example.myapplication.fragment.PersonalFragment
 import com.example.myapplication.fragment.TopdeskitaFragment
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.act_main.*
 import kotlinx.android.synthetic.main.frag_home.*
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var userToken:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_main)
         val sharedPref = getSharedPreferences("userData",Context.MODE_PRIVATE)
-        val email = sharedPref.getString(getString(R.string.email),null)
-        val password = sharedPref.getString(getString(R.string.password),null)
-        if (email != null&&password!=null) {
+        val email = sharedPref.getString(getString(R.string.email),"")!!
+        val password = sharedPref.getString(getString(R.string.password),"")!!
+        userToken = sharedPref.getString(getString(R.string.token), "")!!
+        if (!email.isBlank()&&!password.isBlank()) {
             loginAuthen(email,password)
             Toast.makeText(this, "Mừng bạn trở lại", Toast.LENGTH_SHORT).show()
         }else{
@@ -41,15 +47,10 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.itHomeBotNav -> setCurrentFragment(HomeFragment())
                 R.id.itPersonalBotNav ->setCurrentFragment(PersonalFragment())
-                R.id.itTopSellerBotNav -> setCurrentFragment(TopdeskitaFragment())
+                //R.id.itTopSellerBotNav -> setCurrentFragment(TopdeskitaFragment())
             }
             true
         }
-    }
-
-    private fun actLogin() {
-        val intent = Intent(this,LoginActivity::class.java)
-        startActivity(intent)
     }
 
     fun setCurrentFragment(fragment: Fragment){
@@ -57,11 +58,6 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragContainer,fragment)
             commit()
         }
-    }
-
-    fun startActSearchProduct(item: android.view.MenuItem) {
-        var intent: Intent = Intent(this,SearchProductsActivity::class.java)
-        startActivity(intent)
     }
 
     fun loginAuthen(username: String, password: String){
@@ -87,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                         with(sharePref.edit()) {
                             putString(getString(R.string.token), userToken).commit()
                         }
+                        getPersonalInfo(userToken)
                     } catch (e: Exception) {
                         actLogin()
                     }
@@ -104,8 +101,56 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    fun getPersonalInfo(userToken:String){
+        val url: HttpUrl = getString(R.string.getPersonalInfo).toHttpUrl()
+            .newBuilder().addQueryParameter("userToken", userToken).build()
+
+        val request = Request.Builder().get().url(url).build()
+        val client: OkHttpClient = OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                this@MainActivity.runOnUiThread {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Lỗi kết nối mạng", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val resBody = response.body?.string()
+                val gson = GsonBuilder().create()
+                val userContainer = gson.fromJson(resBody, UserContainer::class.java)
+                this@MainActivity.runOnUiThread {
+                    val userMeJson = gson.toJson(userContainer.user)
+                    val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
+
+                    sharedPref.edit()
+                        .putString(getString(R.string.userMeJson),userMeJson)
+                        .commit()
+                }
+            }
+        })
+    }
+
     fun startActMyCart(item: android.view.MenuItem) {
-        var intent: Intent = Intent(this,MyCartActivity::class.java)
+        if (userToken.isBlank())
+        {
+            actLogin()
+        }else {
+            var intent: Intent = Intent(this, MyCartActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun startActSearchProduct(item: android.view.MenuItem) {
+        var intent: Intent = Intent(this,SearchProductsActivity::class.java)
         startActivity(intent)
+    }
+
+    fun actLogin() {
+        val intent = Intent(this,LoginActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_up,R.anim.slide_out_down)
     }
 }

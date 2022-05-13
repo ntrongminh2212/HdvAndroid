@@ -14,6 +14,7 @@
     <string name="putReview">https://deskita-ecommerce.herokuapp.com/api/v1/review</string>
     <string name="getPersonalInfo">https://deskita-ecommerce.herokuapp.com/api/v1/me</string>
     <string name="putUpdateProfile">https://deskita-ecommerce.herokuapp.com/api/v1/user/update-profile</string>
+    <string name="getLogout">https://deskita-ecommerce.herokuapp.com/api/v1/user/logout</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_topseller">Top Deskita</string>
@@ -21,13 +22,17 @@
     <string name="search_product">Tìm sản phẩm</string>
     <string name="save_search_str">save_search_str</string>
 
+    <string name="dateFormat">dd/MM/yy HH:mm a</string>
+
     <string name="token">token</string>
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="_id">_id</string>
     <string name="avatarPr">avatarPr</string>
+    <string name="avatar">avatar</string>
     <string name="userAdresses">userAddresses</string>
     <string name="defaultAddress">defaultAddress</string>
+    <string name="userMeJson">userMeJson</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

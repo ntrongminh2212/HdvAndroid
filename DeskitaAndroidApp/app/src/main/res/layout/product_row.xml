@@ -6,28 +6,40 @@
     android:orientation="vertical"
     android:background="@drawable/custom_border">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:id="@+id/imgProduct" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="280dp">
+
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/logo_tazas" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/txtProductName"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:text="Ten san pham"
-        android:textSize="16dp"
+        android:text="Ten san pam san pham"
+        android:textSize="15dp"
         android:paddingLeft="5dp"
         android:textColor="@color/black"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/txtPrice"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="10.000đ"
-        android:textSize="22dp"
+        android:textSize="19dp"
         android:paddingLeft="5dp"
         android:textStyle="bold"
         android:textColor="@color/price"

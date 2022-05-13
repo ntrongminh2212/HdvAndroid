@@ -7,11 +7,6 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/itTopSellerBotNav"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_topseller" />
-
-    <item
         android:id="@+id/itPersonalBotNav"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/title_personal" />

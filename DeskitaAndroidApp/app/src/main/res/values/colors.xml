@@ -10,7 +10,9 @@
     <color name="transparent">#0000FFFF</color>
     <color name="red">#ED0303</color>
     <color name="textBlack">#F8464545</color>
-    <color name="price">#F59C00</color>
+    <color name="lightBlack">#F8626161</color>
+    <color name="orange">#F59C00</color>
+    <color name="price">#4EC053</color>
     <color name="star">#F7CF07</color>
     <color name="toolbar">#B4B4B4</color>
     <color name="itemview">#868585</color>

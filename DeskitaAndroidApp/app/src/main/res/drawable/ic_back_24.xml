@@ -6,7 +6,7 @@
     android:tint="?attr/color"
     android:autoMirrored="true">
   <group
-      android:translateX="4"
+      android:translateX="7"
       android:translateY="2">
     <path
         android:fillColor="#646464"

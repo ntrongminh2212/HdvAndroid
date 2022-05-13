@@ -35,7 +35,10 @@ class MyCartActivity : AppCompatActivity() {
         val okHttpClient = OkHttpClient()
         okHttpClient.newCall(request).enqueue(object :Callback{
             override fun onFailure(call: Call, e: IOException) {
-                Toast.makeText(this@MyCartActivity, "Lỗi kết nối internet", Toast.LENGTH_SHORT).show()
+                this@MyCartActivity.runOnUiThread {
+                    Toast.makeText(this@MyCartActivity, "Lỗi kết nối internet", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 return
             }
 

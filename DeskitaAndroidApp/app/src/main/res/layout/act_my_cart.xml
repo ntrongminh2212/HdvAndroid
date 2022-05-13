@@ -39,13 +39,6 @@
                 android:gravity="center"
                 android:layout_marginLeft="130dp"/>
 
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/toolbar"
-                android:textOff="Sửa"
-                android:textOn="Lưu" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -101,7 +94,7 @@
             android:layout_height="55dp"
             android:textSize="15dp"
             android:text="Đặt hàng"
-            android:backgroundTint="@color/price"
+            android:backgroundTint="@color/orange"
             android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"

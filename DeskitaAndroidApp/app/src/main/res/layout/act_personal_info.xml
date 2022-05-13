@@ -122,7 +122,6 @@
                 android:id="@+id/txtFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyễn Trọng Minh"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 
@@ -146,7 +145,6 @@
                 android:id="@+id/txtDateOfBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="22/12/2000"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 
@@ -170,7 +168,6 @@
                 android:id="@+id/txtPhoneNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0932496909"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 
@@ -226,7 +223,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="282/8/2a Bùi Hữu Nghĩa"
                 android:textColor="@color/textBlack"
                 android:textSize="17dp" />
 
@@ -234,7 +230,6 @@
                 android:id="@+id/txtTown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phường 2,Quận Bình Thạnh, TP. Hồ Chí Minh"
                 android:textColor="@color/textBlack"
                 android:textSize="17dp" />
         </LinearLayout>
@@ -295,7 +290,6 @@
                 android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ntrongminh2212@gmail.com"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 
@@ -320,7 +314,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:password="true"
-                android:text="adudbksjd"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp" />
 

@@ -38,7 +38,7 @@ class OrderViewHolder(val view:View){
 }
 class OrderAdapter(var context: Activity,var lstOrders:ArrayList<Order>):BaseAdapter() {
 
-    val dateFormat : SimpleDateFormat = SimpleDateFormat("dd/MM/yy HH:mm a")
+    val dateFormat : SimpleDateFormat = SimpleDateFormat(context.getString(R.string.dateFormat))
     override fun getCount(): Int {
         return lstOrders.size
     }

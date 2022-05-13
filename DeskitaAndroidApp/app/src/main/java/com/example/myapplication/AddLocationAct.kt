@@ -10,8 +10,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.get
 import com.example.myapplication.entities.City
 import com.example.myapplication.entities.Districts
+import com.example.myapplication.entities.UserAddress
 import com.example.myapplication.entities.Wards
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.act_add_location.*
@@ -162,6 +165,47 @@ class AddLocationAct : AppCompatActivity() {
                 return;
             }
         })
+
+        bttAddLocation.setOnClickListener {
+            val ward : Wards = spnWards.selectedItem as Wards
+            val districts: Districts = spnDistricts.selectedItem as Districts
+            val city: City = spnCities.selectedItem as City
+            var address: String = editHouseAddress.text.toString()
+
+            if (address.isBlank()){
+                AlertDialog.Builder(this)
+                    .setTitle("Chưa điền đủ thông tin")
+                    .setMessage("Địa chỉ nhà không được để trống !")
+                    .setPositiveButton("Đã hiểu",null)
+                    .show()
+            }else {
+                address = address
+                val userAddress = UserAddress(address,ward.name+", "+districts.name+", "+city.name,"Vietnam","","")
+                val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
+                var lstAddressJson : String = sharePref.getString(getString(R.string.userAdresses),"")!!
+                var defaultAddressJson : String = sharePref.getString(getString(R.string.defaultAddress),"")!!
+                var lstUserAddress = ArrayList<UserAddress>()
+
+                if (defaultAddressJson.isBlank()){
+                    val defaultAddress = Gson().toJson(userAddress)
+                    sharePref.edit()
+                        .putString(getString(R.string.defaultAddress),defaultAddress)
+                        .commit()
+                }else{
+                    if (!lstAddressJson.isBlank()){
+                        val lstAddressType = object : TypeToken<ArrayList<UserAddress>>() {}.type
+                        lstUserAddress = Gson().fromJson(lstAddressJson,lstAddressType)
+                    }
+                    lstUserAddress.add(userAddress)
+                    lstAddressJson = Gson().toJson(lstUserAddress)
+                    sharePref.edit()
+                        .putString(getString(R.string.userAdresses),lstAddressJson)
+                        .commit()
+                }
+                setResult(RESULT_OK)
+                finish()
+            }
+        }
     }
 
     fun goBack(view: android.view.View) {

@@ -9,7 +9,7 @@ class UserAddress(
     var country: String,
     var phoneNo : String,
     var postalCode: String
-)
+):Serializable
 
 class Avatar(
     var public_id:String,

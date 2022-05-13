@@ -4,32 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".fragment.PersonalFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragment.PersonalFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbPersonal"
+        android:id="@+id/tbReviewProduct"
+        style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:titleTextColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_personal"
-        />
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme"
+        app:title="Cài đặt cá nhân"
+        app:titleTextColor="@color/black" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgAvatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="Avatar"
-        android:src="@drawable/avatar"
-        android:layout_margin="10dp"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="145dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/card_border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="12dp"
+                android:contentDescription="Avatar"
+                android:src="@drawable/avatar" />
+
+            <TextView
+                android:id="@+id/txtFullName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/textBlack"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/bttLogin"
+                android:layout_width="130dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/round_gray_button"
+                android:text="Đăng nhập"
+                android:textAllCaps="false"
+                android:textColor="@color/textBlack"
+                android:visibility="gone"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/logo_tazas" />
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lstPersonalOption"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="wrap_content"></ListView>
 </LinearLayout>

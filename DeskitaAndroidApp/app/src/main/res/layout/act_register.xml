@@ -87,28 +87,48 @@
     <Button
         android:id="@+id/bttDangKy"
         android:layout_width="380dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
         android:text="Đăng ký"
+        android:textAllCaps="false"
+        android:textColor="#166916"
+        android:textSize="18dp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtPasswordConf" />
+        app:layout_constraintTop_toBottomOf="@id/txtPasswordConf"
+        android:background="@drawable/round_green_button" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
-        app:titleTextColor="@color/white"
-        app:title="Đăng ký"
-        app:layout_constraintBottom_toTopOf="@+id/glRegister"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginBottom="186dp"
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:titleTextColor="@color/black">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="150dp"
+                android:gravity="center"
+                android:text="Đăng ký"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

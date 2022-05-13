@@ -11,20 +11,28 @@ import com.example.myapplication.R
 import com.example.myapplication.entities.Review
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.review_row.view.*
+import java.text.SimpleDateFormat
 
 class ReviewViewHolder(row: View){
     var imgReviewerAvatar: CircleImageView
     var ratingUserReview: RatingBar
     var txtReviewComment: TextView
+    var txtUserId: TextView
+    var txtCreatedAt: TextView
 
     init {
         imgReviewerAvatar = row.imgReviewerAvatar
         ratingUserReview = row.ratingUserReview
         txtReviewComment = row.txtReviewComment
+        txtUserId = row.txtUserId
+        txtCreatedAt = row.txtCreatedAt
     }
 }
 
 class ReviewAdapter(var context: Context, var lstReviews: List<Review>): BaseAdapter(){
+
+    private val dateFormat: SimpleDateFormat = SimpleDateFormat(context.getString(R.string.dateFormat))
+
     override fun getCount(): Int {
         return lstReviews.size
     }
@@ -52,7 +60,9 @@ class ReviewAdapter(var context: Context, var lstReviews: List<Review>): BaseAda
         viewHolder.ratingUserReview.rating = lstReviews.get(position).rating.toFloat()
         viewHolder.txtReviewComment.text = lstReviews.get(position).comment
         viewHolder.imgReviewerAvatar.setImageResource(R.drawable.avatar)
+        viewHolder.txtUserId.text = lstReviews.get(position).userId
+        viewHolder.txtCreatedAt.text = dateFormat.format(lstReviews.get(position).createAt)
+
         return view
     }
-
 }

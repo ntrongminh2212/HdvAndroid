@@ -8,16 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Button
 import android.widget.TextView
 import com.example.myapplication.R
 import com.example.myapplication.entities.UserAddress
 import com.google.gson.Gson
-import com.google.gson.JsonArray
 
 class LocationViewHolder(view: View){
     var txtTittle:TextView
-    var bttDeleteLocation:Button
+    var bttDeleteLocation:TextView
     var txtHouseAdress: TextView
     var txtTown: TextView
 
@@ -56,7 +54,7 @@ class LocationAdapter(val context: Context, var lstUserAdresses : ArrayList<User
 
         if (p==0) {
             viewHolder.txtTittle.setText("Địa chỉ mặc định:")
-            val icLocation: Drawable? = context.getDrawable(R.drawable.ic_location_on_24)
+            val icLocation: Drawable = context.getDrawable(R.drawable.ic_location_on_24)!!
             viewHolder.txtTittle.setCompoundDrawables(icLocation,null,null,null)
         }else{
             viewHolder.txtTittle.setText("Địa chỉ "+(p+1).toString()+":")
@@ -65,22 +63,32 @@ class LocationAdapter(val context: Context, var lstUserAdresses : ArrayList<User
         viewHolder.txtHouseAdress.text = lstUserAdresses.get(p).address
         viewHolder.txtTown.text = lstUserAdresses.get(p).city
         viewHolder.bttDeleteLocation.setOnClickListener {
-            deleteLocation(lstUserAdresses.get(p))
+            deleteLocation(lstUserAdresses.get(p),p)
         }
         return viewLocationRow
     }
 
-    private fun deleteLocation(userAddress: UserAddress) {
+    private fun deleteLocation(userAddress: UserAddress,p: Int) {
         AlertDialog.Builder(context)
             .setTitle("Xóa địa chỉ")
             .setMessage("Địa chỉ này sẽ mất vĩnh viễn, bạn có chắc muốn xóa không?")
             .setPositiveButton("Xoá ngay",{ dialogInterface: DialogInterface, i: Int ->
                 lstUserAdresses.remove(userAddress)
-                val userAddressesJson = Gson().toJson(lstUserAdresses)
-                val sharedPref = context.getSharedPreferences("userData",Context.MODE_PRIVATE)
-                sharedPref.edit()
-                    .putString(context.getString(R.string.userAdresses),userAddressesJson)
-                    .commit()
+                if(p==0){
+                    val defaultUserAddress = lstUserAdresses.get(0)
+                    val defaultAddressJson = Gson().toJson(defaultUserAddress)
+                    val sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE)
+                    sharedPref.edit()
+                        .putString(context.getString(R.string.defaultAddress), defaultAddressJson)
+                        .commit()
+                }else {
+                    val lstOtherAddresses =  ArrayList<UserAddress>(lstUserAdresses.subList(1,lstUserAdresses.size))
+                    val otherAddressesJson = Gson().toJson(lstOtherAddresses)
+                    val sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE)
+                    sharedPref.edit()
+                        .putString(context.getString(R.string.userAdresses), otherAddressesJson)
+                        .commit()
+                }
                 notifyDataSetChanged()
             })
             .setNegativeButton("Bỏ",null)
