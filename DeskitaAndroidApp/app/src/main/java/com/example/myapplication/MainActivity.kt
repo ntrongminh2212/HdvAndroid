@@ -134,6 +134,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startActMyCart(item: android.view.MenuItem) {
+        val sharedPref = getSharedPreferences("userData",Context.MODE_PRIVATE)
+        userToken = sharedPref.getString(getString(R.string.token), "")!!
         if (userToken.isBlank())
         {
             actLogin()

@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -181,6 +182,8 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     fun startActMyCart(item: android.view.MenuItem) {
+        val sharedPref = getSharedPreferences("userData", Context.MODE_PRIVATE)
+        userToken = sharedPref.getString(getString(R.string.token), "")!!
         if (userToken.isBlank()) {
             startActLogin()
         } else {

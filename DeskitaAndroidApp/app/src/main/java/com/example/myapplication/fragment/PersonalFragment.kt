@@ -85,15 +85,16 @@ class PersonalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sharePref = requireContext().getSharedPreferences("userData", Context.MODE_PRIVATE)
-        val userToken: String = sharePref.getString(getString(R.string.token), "")!!
-        val userMeJson = sharePref.getString(getString(R.string.userMeJson), "")
-        val userMe: User = Gson().fromJson(userMeJson, User::class.java)
-        setContent(userMe, userToken)
+        setContent()
     }
 
-    fun setContent(user: User, userToken: String) {
-        if (!userToken.isBlank()) {
+    fun setContent() {
+        try {
+            val sharePref = requireContext().getSharedPreferences("userData", Context.MODE_PRIVATE)
+            val userToken: String = sharePref.getString(getString(R.string.token), "")!!
+            val userMeJson = sharePref.getString(getString(R.string.userMeJson), "")
+            val user: User = Gson().fromJson(userMeJson, User::class.java)
+
             Picasso.get().load(user.avatar.url).placeholder(R.drawable.user_avatar).into(imgAvatar)
             txtFullName1.text = user.name
             var listPersonalOption: List<String> = listOf(
@@ -118,7 +119,7 @@ class PersonalFragment : Fragment() {
                     logout()
                 }
             }
-        } else {
+        } catch (ex:Exception) {
             bttLogin.visibility = View.VISIBLE
             bttLogin.setOnClickListener {
                 (activity as MainActivity).actLogin()

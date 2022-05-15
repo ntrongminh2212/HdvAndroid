@@ -46,13 +46,8 @@ class CreateOrderActivity : AppCompatActivity() {
         if (defaultAddressJson != null && !defaultAddressJson.isBlank()) {
             receiveAddress = Gson().fromJson(defaultAddressJson, UserAddress::class.java)
         }else{
-            receiveAddress.city = ""
-            receiveAddress.address = ""
-            receiveAddress.phoneNo = user.phoneNumber
-            receiveAddress.country = "Vietnam"
-            receiveAddress.postalCode = "12345"
+            receiveAddress = UserAddress("","","Vietnam",user.phoneNumber,"12345")
         }
-
         setReceiveInfo()
         setItemsPrice()
     }
