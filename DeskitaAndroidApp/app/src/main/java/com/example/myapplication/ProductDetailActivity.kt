@@ -29,6 +29,7 @@ import java.io.IOException
 class ProductDetailActivity : AppCompatActivity() {
     lateinit var product: Product
     lateinit var userToken: String
+    val ACT_LOGIN_CODE = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_product_detail)
@@ -191,8 +192,15 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun startActLogin() {
         val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,ACT_LOGIN_CODE)
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode ==ACT_LOGIN_CODE){
+            userToken = data?.getStringExtra("token").toString()
+        }
     }
 
     fun justifyListViewHeightBasedOnChildren(listView: ListView) {

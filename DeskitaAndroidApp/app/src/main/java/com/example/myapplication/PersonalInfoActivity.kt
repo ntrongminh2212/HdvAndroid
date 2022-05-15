@@ -48,8 +48,8 @@ class PersonalInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_personal_info)
         val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
-        val userMeJson = sharePref.getString(getString(R.string.userMeJson),"")
-        user = Gson().fromJson(userMeJson,User::class.java)
+        val userMeJson = sharePref.getString(getString(R.string.userMeJson), "")
+        user = Gson().fromJson(userMeJson, User::class.java)
         setContent()
     }
 
@@ -62,10 +62,10 @@ class PersonalInfoActivity : AppCompatActivity() {
         this.user = user
         var sharePref = getSharedPreferences("userData", MODE_PRIVATE)
         sharePref.edit()
-            .putString(getString(R.string.avatar),user.avatar.url)
+            .putString(getString(R.string.avatar), user.avatar.url)
 
-        val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress)," ")
-        if(!defaultAddressJson!!.isBlank()) {
+        val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress), " ")
+        if (!defaultAddressJson!!.isBlank()) {
             var defaultAdress = Gson().fromJson(defaultAddressJson, UserAddress::class.java)
             txtHouseAdrress.setText(defaultAdress.address)
             txtTown.setText(defaultAdress.city)
@@ -107,7 +107,7 @@ class PersonalInfoActivity : AppCompatActivity() {
             val imageStream: InputStream? = contentResolver.openInputStream(fileUri!!)
             val selectedImage = BitmapFactory.decodeStream(imageStream)
 
-            val encodedImage: String = "data:image/jpeg;base64,"+ encodeImage(selectedImage)
+            val encodedImage: String = "data:image/jpeg;base64," + encodeImage(selectedImage)
             putUpdateProfile(encodedImage)
         }
         if (resultCode == RESULT_OK && requestCode == CHANGE_PERSONAL_CODE) {
@@ -117,9 +117,13 @@ class PersonalInfoActivity : AppCompatActivity() {
         }
         if (resultCode == RESULT_OK && requestCode == CHANGE_DEFAULT_LOCATION_CODE) {
             val sharePref = getSharedPreferences("userData", MODE_PRIVATE)
-            val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress),null)
-            val defaultAddress = Gson().fromJson(defaultAddressJson,UserAddress::class.java)
-
+            val defaultAddressJson = sharePref.getString(getString(R.string.defaultAddress), null)
+            var defaultAddress: UserAddress
+            if (defaultAddressJson != null && !defaultAddressJson.isBlank()) {
+                defaultAddress = Gson().fromJson(defaultAddressJson, UserAddress::class.java)
+            } else {
+                defaultAddress = UserAddress("","","VietNam",user.phoneNumber,"12345")
+            }
             txtTown.text = defaultAddress.city
             txtHouseAdrress.text = defaultAddress.address
         }
@@ -139,7 +143,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         var json = JSONObject()
         json.put("params", params)
         json.put("data", data)
-        json.put("avatarPr",avatarPr)
+        json.put("avatarPr", avatarPr)
 
         val url = getString(R.string.putUpdateProfile)
         val jsonType = getString(R.string.mediaTypeJSON).toMediaType()
@@ -163,7 +167,7 @@ class PersonalInfoActivity : AppCompatActivity() {
                 if (resJson.has("success")) {
                     this@PersonalInfoActivity.runOnUiThread {
                         sharePref.edit()
-                            .putString(getString(R.string.avatarPr),avatarPr)
+                            .putString(getString(R.string.avatarPr), avatarPr)
                             .commit()
                         getPersonalInfo(token!!)
                     }
@@ -172,7 +176,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         })
     }
 
-    fun getPersonalInfo(userToken:String){
+    fun getPersonalInfo(userToken: String) {
         val url: HttpUrl = getString(R.string.getPersonalInfo).toHttpUrl()
             .newBuilder().addQueryParameter("userToken", userToken).build()
 
@@ -197,7 +201,7 @@ class PersonalInfoActivity : AppCompatActivity() {
                     val sharedPref = getSharedPreferences("userData", MODE_PRIVATE)
 
                     sharedPref.edit()
-                        .putString(getString(R.string.userMeJson),userMeJson)
+                        .putString(getString(R.string.userMeJson), userMeJson)
                         .commit()
                     finish()
                     startActivity(getIntent())
@@ -215,12 +219,13 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     fun changePersonalData(view: android.view.View) {
-        val intent = Intent(this,ChangePersonalDataAct::class.java)
-        intent.putExtra("user",this.user)
-        startActivityForResult(intent,CHANGE_PERSONAL_CODE)
+        val intent = Intent(this, ChangePersonalDataAct::class.java)
+        intent.putExtra("user", this.user)
+        startActivityForResult(intent, CHANGE_PERSONAL_CODE)
     }
+
     fun changeDefaultLocation(view: android.view.View) {
-        val intent = Intent(this,ManageLocationActivity::class.java)
-        startActivityForResult(intent,CHANGE_DEFAULT_LOCATION_CODE)
+        val intent = Intent(this, ManageLocationActivity::class.java)
+        startActivityForResult(intent, CHANGE_DEFAULT_LOCATION_CODE)
     }
 }

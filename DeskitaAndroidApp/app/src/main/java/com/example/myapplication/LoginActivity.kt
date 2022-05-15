@@ -56,6 +56,9 @@ class LoginActivity : AppCompatActivity() {
                                 putString(getString(R.string.token), resJson.getString("token").toString()).commit()
                             }
                             getPersonalInfo(resJson.getString("token").toString())
+                            val data = Intent()
+                            data.putExtra("token",resJson.getString("token").toString())
+                            setResult(RESULT_OK,data)
                             finish()
                         } else {
                             val toast = Toast.makeText(

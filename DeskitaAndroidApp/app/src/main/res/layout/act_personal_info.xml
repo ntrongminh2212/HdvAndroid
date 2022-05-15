@@ -172,6 +172,29 @@
                 android:textSize="16dp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Email:       "
+                android:textColor="@color/textBlack"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textBlack"
+                android:textSize="16dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -232,91 +255,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textBlack"
                 android:textSize="17dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_border"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_password"
-                android:drawablePadding="4dp"
-                android:gravity="center_vertical"
-                android:text="Tài khoản:"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/bttChangePassword"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_alignParentRight="true"
-                android:clickable="true"
-                android:drawableRight="@drawable/ic_edit_24"
-                android:drawablePadding="3dp"
-                android:gravity="center_vertical"
-                android:text="Thay đổi"
-                android:textColor="@color/custom_textview_button"
-                android:textSize="16dp"
-                android:textStyle="italic" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="Email:       "
-                android:textColor="@color/textBlack"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textBlack"
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:text="Mật khẩu:"
-                android:textColor="@color/textBlack"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/txtPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:password="true"
-                android:textColor="@color/textBlack"
-                android:textSize="16dp" />
-
         </LinearLayout>
     </LinearLayout>
 
