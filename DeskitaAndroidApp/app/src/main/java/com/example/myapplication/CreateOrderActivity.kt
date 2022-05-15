@@ -61,6 +61,7 @@ class CreateOrderActivity : AppCompatActivity() {
                 .setMessage("Địa chỉ trống, hãy thêm địa chỉ nhận hàng")
                 .setPositiveButton("OK",null)
                 .show()
+            return
         }
 
         val url = getString(R.string.postCreateOrder)
